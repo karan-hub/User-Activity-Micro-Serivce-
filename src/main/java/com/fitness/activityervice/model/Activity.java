@@ -19,6 +19,8 @@ public class Activity {
 
     @Id
     private  String  id;
+    private  String  userId;
+
     private  ActivityType activityType;
     private  Integer duration;
     private  Integer caloriesBurn;

@@ -5,6 +5,7 @@ import com.fitness.activityervice.dto.ActivityResponse;
 import com.fitness.activityervice.model.Activity;
 import com.fitness.activityervice.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,13 @@ import java.util.List;
 public class ActivityService {
 
     private  final ActivityRepository activityRepository;
+    private  final UserValidationService validationService;
+
     public ActivityResponse trackActivity(ActivityRequest request) {
+        boolean isValid = validationService.validateUser(request.getUserId());
+        if (isValid)  throw  new RuntimeException("USER NOT FOUND BRO");
         Activity activity = Activity.builder()
+                .userId(request.getUserId())
                 .activityType(request.getActivityType())
                 .additionalMatrics(request.getAdditionalMatrics())
                 .duration(request.getDuration())
@@ -38,6 +44,7 @@ public class ActivityService {
     private ActivityResponse buildResponse(Activity activity) {
         return ActivityResponse.builder()
                 .id(activity.getId())
+                .userId(activity.getUserId())
                 .activityType(activity.getActivityType() != null ? activity.getActivityType().name() : null)
                 .duration(activity.getDuration())
                 .caloriesBurn(activity.getCaloriesBurn())

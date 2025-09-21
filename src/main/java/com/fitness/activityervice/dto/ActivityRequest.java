@@ -15,6 +15,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class ActivityRequest {
     private ActivityType activityType;
+    private String userId;
     private Integer duration;
     private Integer caloriesBurn;
     private LocalDateTime startTime;

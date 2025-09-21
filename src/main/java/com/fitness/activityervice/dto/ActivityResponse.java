@@ -14,6 +14,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class ActivityResponse {
     private String id;
+    private String userId;
     private String activityType;
     private Integer duration;
     private Integer caloriesBurn;
