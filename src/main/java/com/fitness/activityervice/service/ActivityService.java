@@ -7,6 +7,8 @@ import com.fitness.activityervice.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ActivityService {
@@ -24,6 +26,13 @@ public class ActivityService {
         activity =  activityRepository.save(activity);
 
         return  buildResponse(activity);
+    }
+
+    public List<ActivityResponse> getAllActivities() {
+        return activityRepository.findAll()
+                .stream()
+                .map(this::buildResponse)
+                .toList();
     }
 
     private ActivityResponse buildResponse(Activity activity) {
