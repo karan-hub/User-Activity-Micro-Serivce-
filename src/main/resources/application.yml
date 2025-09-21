@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: activity-service
+
+  data:
+    mongodb:
+      uri: mongodb://root:root@localhost:27017/fitness?authSource=admin
+      database: fitness
+  logging:
+    level:
+      org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+server:
+ port: 8081
+
+
