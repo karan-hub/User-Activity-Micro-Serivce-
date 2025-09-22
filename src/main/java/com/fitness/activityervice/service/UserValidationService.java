@@ -23,7 +23,7 @@ public class UserValidationService {
                    .bodyToMono(Boolean.class)
                    .block();
        } catch (WebClientException  e) {
-                e.printStackTrace();
+           System.err.println("User Service call failed: " + e.getMessage());
        }
        return  false;
     }
