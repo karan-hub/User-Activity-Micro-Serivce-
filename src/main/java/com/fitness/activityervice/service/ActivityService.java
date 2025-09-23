@@ -26,7 +26,7 @@ public class ActivityService {
 
     public ActivityResponse trackActivity(ActivityRequest request) {
         boolean isValid = validationService.validateUser(request.getUserId());
-        if (isValid)  throw  new RuntimeException("USER NOT FOUND BRO");
+        if (!isValid)  throw  new RuntimeException("USER NOT FOUND BRO");
         Activity activity = Activity.builder()
                 .userId(request.getUserId())
                 .activityType(request.getActivityType())

@@ -9,15 +9,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
 
     @Bean
-    @LoadBalanced
-    public  WebClient.Builder  webClientBuilder(){
-        return   WebClient.builder();
+    @LoadBalanced  // important
+    public WebClient.Builder loadBalancedWebClientBuilder() {
+        return WebClient.builder();
     }
 
     @Bean
-    public  WebClient  userServiceWebClient(WebClient.Builder  webClientBuilder){
-    return    webClientBuilder
-            .baseUrl("lb://USERSERVICE")
-            .build();
+    public WebClient userServiceWebClient(@LoadBalanced WebClient.Builder builder) {
+        return builder
+                .baseUrl("lb://USERSERVICE")
+                .build();
     }
 }

@@ -22,10 +22,12 @@ kafka:
 server:
  port: 8081
 
-
 eureka:
-     client:
-       serviceUrl:
-         defaultZone: http://localhost:8761/eureka/
-
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
 

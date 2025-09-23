@@ -15,17 +15,18 @@ public class UserValidationService {
 
     private   final  WebClient  userServiceWebClient;
 
-    public  boolean  validateUser(String usrId){
-       try {
-           return  userServiceWebClient.get()
-                   .uri("/api/user/{usrId}/validate" , usrId)
-                   .retrieve()
-                   .bodyToMono(Boolean.class)
-                   .block();
-       } catch (WebClientException  e) {
-           System.err.println("User Service call failed: " + e.getMessage());
-       }
-       return  false;
+    public boolean validateUser(String usrId) {
+        try {
+            return userServiceWebClient.get()
+                    .uri("/api/user/{usrId}/validate", usrId) // single slash
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+        } catch (WebClientException e) {
+            System.err.println("User Service call failed: " + e.getMessage());
+            return false;
+        }
     }
+
 
 }
